@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace _11_Interface_Enum
 {
-    internal class Director : ICloneable
+    public class Director : ICloneable
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public DateTime BirthYear { get; set; }
+        public int BirthYear { get; set; }
 
         public object Clone()
         {
