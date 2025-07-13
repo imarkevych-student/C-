@@ -22,6 +22,9 @@ namespace _12_Delegates_Classwork
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.InputEncoding = System.Text.Encoding.UTF8;
+
             int[] array = { 3, -1, 7, 0, -5, 2, 11, -3 };
 
             OperationDelegate[] computeOperations =
@@ -45,6 +48,7 @@ namespace _12_Delegates_Classwork
             int mainChoice = ReadValidChoice(1,mainMenu.Length);
             mainMenu[mainChoice - 1]();
         }
+
         static int ReadValidChoice(int min, int max)
         {
             int choice;
@@ -105,7 +109,55 @@ namespace _12_Delegates_Classwork
                     return false;
             }
             return true;
-        }       
+        }
+
+        private static void ExecuteModify(int[] array, ModificationDelegate[] modifyOperations)
+        {
+            Console.WriteLine("Оберіть операцію:\n1 - Змінити негативні на 0\n2 - Відсортувати масив\n3 - Перемістити парні на початок");
+            int choice = ReadValidChoice(1, modifyOperations.Length);
+            modifyOperations[choice - 1](array);
+            Console.WriteLine("Масив після змін: " + string.Join(", ", array));
+        }
+
+        private static void MoveEvensToFront(int[] array)
+        {
+           int[] temp = new int[array.Length];
+            int index = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] % 2 == 0)
+                {
+                    temp[index++] = array[i];
+                }
+            }
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] % 2 != 0)
+                {
+                    temp[index++] = array[i];
+                }
+            }
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = temp[i];
+            }
+        }
+
+        private static void SortArray(int[] array)
+        {
+            Array.Sort(array);
+        }
+
+        private static void ChangeNegativeToZero(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] < 0)
+                {
+                    array[i] = 0;
+                }
+            }
+        }
 
 
     }
