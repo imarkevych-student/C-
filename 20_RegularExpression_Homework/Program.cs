@@ -43,7 +43,6 @@ namespace _20_RegularExpression_Homework
 
             return true;
         }
-
         static bool ValidatePassword(string password)
         {
             if (string.IsNullOrWhiteSpace(password) || password.Length < 6)
